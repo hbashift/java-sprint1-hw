@@ -7,7 +7,7 @@ public class Menu {
         System.out.println("0 - Выход из приложения");
     }
 
-    public static void uiForStepTracker() {
+    public static void uiStepStatistics() {
 
     }
 }

@@ -9,7 +9,7 @@ public class Main {
         int userInput = scanner.nextInt();
 
         while(true) {
-            // TODO сделать обработку команд
+            // TODO доделать обработку команд
             if(userInput == 1) {
                 System.out.println("Введите номер месяца: \n" +
                         "0 - январь, 1 - февраль, 2 - марта, 3 - апрель\n" +
