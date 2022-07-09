@@ -27,7 +27,9 @@ public class StepTracker {
         return monthData[month].getDailySteps(day);
     }
 
-    public int[] getMonthData(int month) { return monthData[month].getStepsCount(); }
+    public int[] getMonthData(int month) {
+        return monthData[month].getStepsCount();
+    }
 
     // поиск максимального количества шагов за определенный месяц
     public int maxMonthlySteps(int month) {
