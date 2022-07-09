@@ -5,9 +5,10 @@ public class StepTracker {
 
     // Конструктор для StepTracker'a
     public StepTracker() {
+        converter = new Convert();
         dailySteps = 10000;
         monthData = new MonthData[12];
-        for(int i = 0; i < monthData.length; i++) {
+        for (int i = 0; i < monthData.length; i++) {
             monthData[i] = new MonthData();
         }
     }
@@ -22,18 +23,23 @@ public class StepTracker {
         monthData[month].setStepsCount(day, steps);
     }
 
-    public int getMonthData(int month, int day) {
-        return monthData[month].getStepsCount(day);
+    public int getDailyData(int month, int day) {
+        return monthData[month].getDailySteps(day);
     }
 
+    public int[] getMonthData(int month) { return monthData[month].getStepsCount(); }
+
     // поиск максимального количества шагов за определенный месяц
-    public int maxMonthlySteps(int month, int day) {
+    public int maxMonthlySteps(int month) {
         return monthData[month].maxStepsPerDay();
     }
 
     // поиск среднего количества шагов за месяц
     public int averageSteps(int month) {
         int stepsSum = monthData[month].sumOfSteps();
+        if (stepsSum == 0) {
+            return 0;
+        }
         return stepsSum / monthData[month].getLengthOfMonth();
     }
 
@@ -45,8 +51,26 @@ public class StepTracker {
         return converter.convertToCal(monthData[month].sumOfSteps());
     }
 
-    /* TODO best series Лучшая серия: максимальное количество подряд идущих дней,
-        в течение которых количество шагов за день было равно или выше целевого.*/
+    // поиск наибольшей последовательности подряд идущих дней
+    public int findBestSeries(int month) {
+        int count = 0, max = 0;
+        for (int i = 0; i < monthData[month].getLengthOfMonth(); i++) {
+            if (monthData[month].getDailySteps(i) >= dailySteps) {
+                count++;
+            } else {
+                count = 0;
+            }
+
+            if (count > max) {
+                max = count;
+            }
+        }
+        return max;
+    }
+
+    public int sumOfSteps(int month) {
+        return monthData[month].sumOfSteps();
+    }
 
     // TODO статистика по каждому дню
 }
@@ -64,21 +88,24 @@ class MonthData {
         stepsCount[day] = steps;
     }
 
-    public int getStepsCount(int day) {
+    public int getDailySteps(int day) {
         return stepsCount[day];
     }
+
+    public int[] getStepsCount() { return stepsCount; }
+    public int getLengthOfMonth() { // getter длина месяца
+        return days;
+    }
+
     // общее количество шагов за месяц
     public int sumOfSteps() {
         int stepsSum = 0;
-        for(int steps : stepsCount) {
+        for (int steps : stepsCount) {
             stepsSum += steps;
         }
         return stepsSum;
     }
 
-    public int getLengthOfMonth() { // getter длина месяца
-        return days;
-    }
     // поиск максимального количества шагов за месяц
     public int maxStepsPerDay() {
         int max = 0;
@@ -104,7 +131,7 @@ class Convert {
     }
     // конвертирование в килокалории
     public double convertToCal(int steps) {
-        return steps + stepKCalRatio;
+        return steps * stepKCalRatio;
     }
 
     public static void main(String[] args) {
