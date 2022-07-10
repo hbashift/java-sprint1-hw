@@ -74,7 +74,7 @@ public class StepTracker {
         return monthData[month].sumOfSteps();
     }
 
-    // TODO статистика по каждому дню
+
 }
 
 class MonthData {
@@ -116,32 +116,5 @@ class MonthData {
                 max = j;
         }
         return max;
-    }
-}
-
-class Convert {
-    private double stepKmRatio;
-    private double stepKCalRatio;
-
-    Convert() {
-        stepKmRatio = 0.00075;
-        stepKCalRatio = 0.05;
-    }
-    // конвертирование в километры
-    public double convertToKm(int steps) {
-        return steps * stepKmRatio;
-    }
-    // конвертирование в килокалории
-    public double convertToCal(int steps) {
-        return steps * stepKCalRatio;
-    }
-
-    public static void main(String[] args) {
-        Convert convert = new Convert();
-
-        double km = convert.convertToKm(75000);
-        System.out.println(km);
-
-        System.out.println(convert.convertToCal(1299));
     }
 }

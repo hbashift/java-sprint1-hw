@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        Menu menu = new Menu();
         Scanner scanner = new Scanner(System.in);
         StepTracker tracker = new StepTracker();
-        Menu.print();
+        menu.print();
 
         int userInput = scanner.nextInt();
 
-        // TODO доделать обработку команд
         while (true) {
-            // TODO мб стоит добавить цикл, чтобы вводить данные за несколько дней подряд
             if (userInput == 1) {
                 System.out.println("Введите номер месяца: \n" +
                         "0 - январь, 1 - февраль, 2 - марта, 3 - апрель\n" +
@@ -48,7 +48,7 @@ public class Main {
                         "8 - сентябрь, 9 - октябрь, 10 - ноябрь, 11 - декабрь");
                 int month = scanner.nextInt();
 
-                Menu.uiStepStatistics(tracker, month);
+                menu.uiStepStatistics(tracker, month);
             }
             else if (userInput == 3) {
                 System.out.println("Введите цель по количеству шагов: ");
@@ -69,7 +69,7 @@ public class Main {
             else {
                 System.out.println("Введеная команда не существует!\n");
             }
-            Menu.print();
+            menu.print();
             userInput = scanner.nextInt();
         }
     }

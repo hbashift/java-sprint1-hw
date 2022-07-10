@@ -1,5 +1,5 @@
 public class Menu {
-    public static void print() {
+    public void print() {
         System.out.println("Выберите нужное действие:");
         System.out.println("1 - Ввести количество шагов за определенный день");
         System.out.println("2 - Вывести статистику за месяц");
@@ -7,7 +7,7 @@ public class Menu {
         System.out.println("0 - Выход из приложения");
     }
 
-    public static void uiStepStatistics(StepTracker tracker, int month) {
+    public void uiStepStatistics(StepTracker tracker, int month) {
         int[] monthData = tracker.getMonthData(month);
         System.out.println("Количество пройденных шагов по дням: ");
         for (int day = 0; day < monthData.length; day += 2) {
