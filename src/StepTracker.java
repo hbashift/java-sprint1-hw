@@ -80,22 +80,22 @@ public class StepTracker {
         menu.monthMenu();
         int month = scanner.nextInt();
         if (tracker.checkMonthNumber(month)) {
-            System.out.println("Введите верный номер месяца: ");
-            month = scanner.nextInt();
+            System.out.println("Введен неверный номер месяца\n");
+            return;
         }
 
         System.out.println("Введите день месяца: ");
         int day = scanner.nextInt();
         if (tracker.checkDayNumber(day)) {
-            System.out.println("Введите верную дату: ");
-            day = scanner.nextInt();
+            System.out.println("Введена неверная дата\n");
+            return;
         }
 
         System.out.println("Введите количество шагов, пройденных в этот день");
         int steps = scanner.nextInt();
         if (tracker.checkStepsNumber(steps)) {
-            System.out.println("Введите верное количество шагов: ");
-            steps = scanner.nextInt();
+            System.out.println("Введено отрицательное количество шагов");
+            return;
         }
 
         setMonthData(month, day-1, steps);
@@ -107,8 +107,8 @@ public class StepTracker {
         menu.monthMenu();
         int month = scanner.nextInt();
         if (tracker.checkMonthNumber(month)) {
-            System.out.println("Введите верный номер месяца: ");
-            month = scanner.nextInt();
+            System.out.println("Введен неверный номер месяца");
+            return;
         }
 
         menu.uiStepStatistics(tracker, month);
@@ -119,9 +119,10 @@ public class StepTracker {
         System.out.println("Введите цель по количеству шагов: ");
         int dailySteps = scanner.nextInt();
 
+        // TODO проверка шагов
         if (tracker.checkStepsNumber(dailySteps)) {
-            System.out.println("Введите верное количество шагов: ");
-            dailySteps = scanner.nextInt();
+            System.out.println("Введено отрицательное количество шагов");
+            return;
         }
 
         tracker.setDailySteps(dailySteps);
