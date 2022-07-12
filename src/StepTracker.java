@@ -119,7 +119,6 @@ public class StepTracker {
         System.out.println("Введите цель по количеству шагов: ");
         int dailySteps = scanner.nextInt();
 
-        // TODO проверка шагов
         if (tracker.checkStepsNumber(dailySteps)) {
             System.out.println("Введено отрицательное количество шагов");
             return;
