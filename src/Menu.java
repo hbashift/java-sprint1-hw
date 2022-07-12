@@ -21,4 +21,11 @@ public class Menu {
         System.out.println("Преодоленная дистанция: " + tracker.coveredDist(month));
         System.out.println("Лучшая серия дней: " + tracker.findBestSeries(month));
     }
+
+    public void monthMenu() {
+        System.out.println("Введите номер месяца: \n" +
+                "0 - январь, 1 - февраль, 2 - марта, 3 - апрель\n" +
+                "4 - май, 5 - июнь, 6 - июль, 7 - август\n" +
+                "8 - сентябрь, 9 - октябрь, 10 - ноябрь, 11 - декабрь");
+    }
 }

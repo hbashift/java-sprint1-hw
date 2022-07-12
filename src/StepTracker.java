@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class StepTracker {
     private MonthData[] monthData;
     private Convert converter;
@@ -74,7 +75,71 @@ public class StepTracker {
         return monthData[month].sumOfSteps();
     }
 
+    // setter'ы для статистики
+    public void setDailyStatistics(Scanner scanner,StepTracker tracker, Menu menu) {
+        menu.monthMenu();
+        int month = scanner.nextInt();
+        if (tracker.checkMonthNumber(month)) {
+            System.out.println("Введите верный номер месяца: ");
+            month = scanner.nextInt();
+        }
 
+        System.out.println("Введите день месяца: ");
+        int day = scanner.nextInt();
+        if (tracker.checkDayNumber(day)) {
+            System.out.println("Введите верную дату: ");
+            day = scanner.nextInt();
+        }
+
+        System.out.println("Введите количество шагов, пройденных в этот день");
+        int steps = scanner.nextInt();
+        if (tracker.checkStepsNumber(steps)) {
+            System.out.println("Введите верное количество шагов: ");
+            steps = scanner.nextInt();
+        }
+
+        setMonthData(month, day-1, steps);
+        System.out.println("Количество шагов сохранено");
+    }
+
+    // getter для месячной статистики
+    public void getMonthStatistics(Scanner scanner,StepTracker tracker, Menu menu) {
+        menu.monthMenu();
+        int month = scanner.nextInt();
+        if (tracker.checkMonthNumber(month)) {
+            System.out.println("Введите верный номер месяца: ");
+            month = scanner.nextInt();
+        }
+
+        menu.uiStepStatistics(tracker, month);
+    }
+
+    // изменение цели по количеству шагов
+    public void changeDailySteps(Scanner scanner, StepTracker tracker) {
+        System.out.println("Введите цель по количеству шагов: ");
+        int dailySteps = scanner.nextInt();
+
+        if (tracker.checkStepsNumber(dailySteps)) {
+            System.out.println("Введите верное количество шагов: ");
+            dailySteps = scanner.nextInt();
+        }
+
+        tracker.setDailySteps(dailySteps);
+        System.out.println("Цель изменена");
+    }
+
+    // Проверка входимых данных
+    public boolean checkMonthNumber(int monthNumber) {
+        return monthNumber < 0 || monthNumber > 11;
+    }
+
+    public boolean checkDayNumber(int dayNumber) {
+        return dayNumber < 0 || dayNumber > 30;
+    }
+
+    public boolean checkStepsNumber(int dailySteps) {
+        return dailySteps < 0;
+    }
 }
 
 class MonthData {
