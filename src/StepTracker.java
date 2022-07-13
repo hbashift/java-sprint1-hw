@@ -140,46 +140,46 @@ public class StepTracker {
     public boolean checkStepsNumber(int dailySteps) {
         return dailySteps < 0;
     }
-}
 
-class MonthData {
-    private int days; // количество дней в месяце
-    private int[] stepsCount; // массив для хранения шагов в каждом дне месяца
-    // конструктор для объекта
-    MonthData() {
-        days = 30;
-        stepsCount = new int[days];
-    }
-    // setter и getter для количества шагов пройденных за день
-    public void setStepsCount(int day, int steps) {
-        stepsCount[day] = steps;
-    }
-
-    public int getDailySteps(int day) {
-        return stepsCount[day];
-    }
-
-    public int[] getStepsCount() { return stepsCount; }
-    public int getLengthOfMonth() { // getter длина месяца
-        return days;
-    }
-
-    // общее количество шагов за месяц
-    public int sumOfSteps() {
-        int stepsSum = 0;
-        for (int steps : stepsCount) {
-            stepsSum += steps;
+    class MonthData {
+        private int days; // количество дней в месяце
+        private int[] stepsCount; // массив для хранения шагов в каждом дне месяца
+        // конструктор для объекта
+        MonthData() {
+            days = 30;
+            stepsCount = new int[days];
         }
-        return stepsSum;
-    }
-
-    // поиск максимального количества шагов за месяц
-    public int maxStepsPerDay() {
-        int max = 0;
-        for (int j : stepsCount) {
-            if (j > max)
-                max = j;
+        // setter и getter для количества шагов пройденных за день
+        public void setStepsCount(int day, int steps) {
+            stepsCount[day] = steps;
         }
-        return max;
+
+        public int getDailySteps(int day) {
+            return stepsCount[day];
+        }
+
+        public int[] getStepsCount() { return stepsCount; }
+        public int getLengthOfMonth() { // getter длина месяца
+            return days;
+        }
+
+        // общее количество шагов за месяц
+        public int sumOfSteps() {
+            int stepsSum = 0;
+            for (int steps : stepsCount) {
+                stepsSum += steps;
+            }
+            return stepsSum;
+        }
+
+        // поиск максимального количества шагов за месяц
+        public int maxStepsPerDay() {
+            int max = 0;
+            for (int j : stepsCount) {
+                if (j > max)
+                    max = j;
+            }
+            return max;
+        }
     }
 }
